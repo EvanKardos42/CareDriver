@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CareDrivers</string>
+    <string name="default_time">8:00a - 12:00p</string>
+</resources>
