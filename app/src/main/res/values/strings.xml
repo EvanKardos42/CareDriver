@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">CareDrivers</string>
     <string name="default_time">8:00a - 12:00p</string>
+    <string name="pick_up">Pick Up</string>
+    <string name="default_address">123 Here Ave, Los Angeles, CA 90045</string>
+    <string name="Is_A_Series">This trip is part of a series.</string>
+    <string name="default_text_tripid">Trip ID: 123456 * 18.46 mi * 50 min</string>
+    <string name="cancel_text">Cancel This Trip</string>
 </resources>
