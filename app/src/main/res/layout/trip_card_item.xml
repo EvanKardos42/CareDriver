@@ -4,11 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="12dp"
         android:visibility="visible">
 
         <ListView
@@ -16,7 +17,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="12dp"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
             android:id="@+id/num_riders_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(Riders 2)"
+            android:text="(Riders 2 * 1 booster)"
             app:layout_constraintBottom_toBottomOf="@+id/timeframe_textView"
             app:layout_constraintStart_toEndOf="@+id/timeframe_textView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
