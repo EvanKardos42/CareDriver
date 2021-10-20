@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.enigmastudios.caredrivers.R
 import com.enigmastudios.caredrivers.models.RideModelResponse
+import com.enigmastudios.caredrivers.utils.DateUtils
 
 class MainFragment : Fragment() {
     private val TAG ="EVANKARDOS_MAINFRAGMENT"
@@ -28,8 +29,10 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        DateUtils.getTimeFromString("")
+        DateUtils.getDateFromString("")
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+
         viewModel.getRides().observe(viewLifecycleOwner) {
             response = it
             Log.d(TAG, response.rideModels.size.toString())
