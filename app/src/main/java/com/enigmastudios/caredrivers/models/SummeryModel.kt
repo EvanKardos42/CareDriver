@@ -6,9 +6,9 @@ import java.time.LocalTime
 import java.util.*
 
 data class SummeryModel(
-    val viewType:Int = TripAdapter.VIEW_TYPE_HEADER,
-    val date: LocalDate,
-    val startTime:LocalTime,
-    val endTime:LocalTime,
-    val total:Float
-)
+    val date: String,
+    val startTime:String,
+    val endTime:String,
+    val total:Float,
+    override val viewType: Int = TripAdapter.VIEW_TYPE_HEADER
+):ViewType
