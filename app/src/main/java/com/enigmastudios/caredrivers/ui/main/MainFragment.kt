@@ -7,15 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.enigmastudios.caredrivers.R
 import com.enigmastudios.caredrivers.RideCollection
 import com.enigmastudios.caredrivers.models.RideModelResponse
+import com.enigmastudios.caredrivers.ui.RideAdapter
 
 class MainFragment : Fragment() {
     private val TAG ="EVANKARDOS_MAINFRAGMENT"
     private lateinit var response: RideCollection
     private lateinit var viewModel: MainViewModel
-
+    private lateinit var recyclerView: RecyclerView
     companion object {
         fun newInstance() = MainFragment()
     }
@@ -24,7 +27,9 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        val view =  inflater.inflate(R.layout.main_fragment, container, false)
+        recyclerView  = view.findViewById(R.id.list_of_rides_recycleView)
+        return view
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,9 +37,11 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getRides().observe(viewLifecycleOwner){
             response = RideCollection(it.rideModels)
-            for(item in response.toList()){
-                Log.d("EVAN KARDOS", item.toString())
-            }
+            //for(item in response.toList()){
+              //  Log.d("EVAN KARDOS", item.toString())
+            //}
+            recyclerView.adapter = RideAdapter(response.toList())
+            recyclerView.layoutManager = LinearLayoutManager(context)
         }
     }
 

@@ -12,7 +12,7 @@ class UtilsDate {
 
             val value = utcFormat.parse(utcString)
             val dateFormat = SimpleDateFormat("E M/d", Locale.getDefault())
-            return dateFormat.format(value).toString()
+            return dateFormat.format(value!!).toString()
         }
 
         fun getTimeFromString(utcString: String):String {
@@ -20,7 +20,7 @@ class UtilsDate {
             val value = utcFormat.parse(utcString)
             val dateFormat = SimpleDateFormat("KK:mma", Locale.getDefault())
             dateFormat.timeZone = TimeZone.getDefault()
-            return dateFormat.format(value).toString()
+            return dateFormat.format(value!!).toString()
         }
     }
 }

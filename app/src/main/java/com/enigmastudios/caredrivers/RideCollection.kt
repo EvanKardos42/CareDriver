@@ -1,15 +1,15 @@
 package com.enigmastudios.caredrivers
 
-import android.util.Log
 import com.enigmastudios.caredrivers.models.RideModel
-import com.enigmastudios.caredrivers.models.SummeryModel
+import com.enigmastudios.caredrivers.models.SummeryHeaderModel
 import com.enigmastudios.caredrivers.models.ViewType
 import com.enigmastudios.caredrivers.utils.UtilsDate
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.LinkedHashMap
 
 class RideCollection(listOfRides : List<RideModel>) {
-    val map = TreeMap<String,ArrayList<RideModel>>()
+    val map = LinkedHashMap<String,ArrayList<RideModel>>()
 
     init{
         for(ride in listOfRides){
@@ -34,7 +34,7 @@ class RideCollection(listOfRides : List<RideModel>) {
             sum /= 100
             val startTime = UtilsDate.getTimeFromString(listOfRides[0].startsAt)
             val endTime = UtilsDate.getTimeFromString(listOfRides[listOfRides.size-1].endsAt)
-            val header = SummeryModel( date = key,startTime= startTime,endTime = endTime ,total = sum)
+            val header = SummeryHeaderModel( date = key,startTime= startTime,endTime = endTime ,total = sum)
             values.add(header)
             values.addAll(listOfRides)
         }

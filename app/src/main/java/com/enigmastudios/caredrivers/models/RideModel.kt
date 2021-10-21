@@ -1,11 +1,11 @@
 package com.enigmastudios.caredrivers.models
 
 
-import com.enigmastudios.caredrivers.ui.TripAdapter
+import com.enigmastudios.caredrivers.ui.RideAdapter
 import com.google.gson.annotations.SerializedName
 
 data class RideModel(
-    override val viewType: Int = TripAdapter.VIEW_TYPE_TRIP,
+    override val viewType: Int = RideAdapter.VIEW_TYPE_TRIP,
     @SerializedName("ends_at")
     val endsAt: String,
     @SerializedName("estimated_earnings_cents")
