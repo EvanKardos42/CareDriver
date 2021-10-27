@@ -37,9 +37,6 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getRides().observe(viewLifecycleOwner){
             response = RideCollection(it.rideModels)
-            //for(item in response.toList()){
-              //  Log.d("EVAN KARDOS", item.toString())
-            //}
             recyclerView.adapter = RideAdapter(response.toList())
             recyclerView.layoutManager = LinearLayoutManager(context)
         }

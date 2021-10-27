@@ -19,6 +19,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Thu 6/18"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,6 +30,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/default_time"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/Date_textView"
             app:layout_constraintStart_toEndOf="@+id/Date_textView"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,14 +49,16 @@
                 android:id="@+id/Est_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Estimated" />
+                android:text="Estimated"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/Total_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="$600.00"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="14sp" />
 
         </LinearLayout>
 

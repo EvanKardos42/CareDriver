@@ -3,8 +3,7 @@ package com.enigmastudios.caredrivers
 import com.enigmastudios.caredrivers.models.RideModel
 import com.enigmastudios.caredrivers.models.SummeryHeaderModel
 import com.enigmastudios.caredrivers.models.ViewType
-import com.enigmastudios.caredrivers.utils.UtilsDate
-import java.util.*
+import com.enigmastudios.caredrivers.utils.UtilsStringRide
 import kotlin.collections.ArrayList
 import kotlin.collections.LinkedHashMap
 
@@ -13,7 +12,7 @@ class RideCollection(listOfRides : List<RideModel>) {
 
     init{
         for(ride in listOfRides){
-            val date = UtilsDate.getDateFromString(ride.startsAt)
+            val date = UtilsStringRide.dateToString(ride.startsAt)
             if(map.containsKey(date)){
                 map[date]?.add(ride)
             }else{
@@ -32,9 +31,13 @@ class RideCollection(listOfRides : List<RideModel>) {
                 sum += ride.estimatedEarningsCents
             }
             sum /= 100
-            val startTime = UtilsDate.getTimeFromString(listOfRides[0].startsAt)
-            val endTime = UtilsDate.getTimeFromString(listOfRides[listOfRides.size-1].endsAt)
-            val header = SummeryHeaderModel( date = key,startTime= startTime,endTime = endTime ,total = sum)
+            val sumString = String.format("$%.2f",sum)
+            val startTime = UtilsStringRide.timeToString(listOfRides[0].startsAt)
+            val endTime = UtilsStringRide.timeToString(listOfRides[listOfRides.size-1].endsAt)
+            val header = SummeryHeaderModel( date = key,
+                startTime= startTime,
+                endTime = endTime ,
+                total = sumString)
             values.add(header)
             values.addAll(listOfRides)
         }

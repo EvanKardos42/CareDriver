@@ -3,16 +3,13 @@ package com.enigmastudios.caredrivers.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.enigmastudios.caredrivers.R
 import com.enigmastudios.caredrivers.models.RideModel
 import com.enigmastudios.caredrivers.models.SummeryHeaderModel
 import com.enigmastudios.caredrivers.models.ViewType
-import com.enigmastudios.caredrivers.utils.UtilsDate
-import org.w3c.dom.Text
+import com.enigmastudios.caredrivers.utils.UtilsStringRide
 
 class RideAdapter(list: List<ViewType>): RecyclerView.Adapter<RideAdapter.RideDataHolder>() {
 
@@ -59,32 +56,21 @@ class RideAdapter(list: List<ViewType>): RecyclerView.Adapter<RideAdapter.RideDa
 
     sealed class RideDataHolder(itemView: View):RecyclerView.ViewHolder(itemView){
           class TripHolder(itemView: View): RideDataHolder(itemView){
-            var addresses:TextView
-            var timeFrame:TextView
-            var cost:TextView
-            var numRiders:TextView
+              var addresses:TextView = itemView.findViewById(R.id.addresses_textView)
+              var timeFrame:TextView = itemView.findViewById(R.id.timeframe_textView)
+              var cost:TextView = itemView.findViewById(R.id.estimation_price_textView)
+              var numRiders:TextView = itemView.findViewById(R.id.num_riders_textView)
 
-            init{
-                addresses = itemView.findViewById(R.id.addresses_textView)
-                cost = itemView.findViewById(R.id.estimation_price_textView)
-                timeFrame = itemView.findViewById(R.id.timeframe_textView)
-                numRiders =  itemView.findViewById(R.id.num_riders_textView)
-
-            }
-            fun bind(ride:RideModel){
-                val startTime =  UtilsDate.getTimeFromString(ride.startsAt)
-                val endTime  = "-" + UtilsDate.getTimeFromString(ride.startsAt)
+              fun bind(ride:RideModel){
+                val startTime =  UtilsStringRide.timeToString(ride.startsAt)
+                val endTime  = UtilsStringRide.timeToString(ride.startsAt)
                 val timeString = "$startTime - $endTime"
-                var addressesString = ""
-                cost.text = (ride.estimatedEarningsCents/100).toString()
-                timeFrame.text = timeString
+                val costsString:Double = (ride.estimatedEarningsCents/100.0)
 
-                ride.orderedWaypoints.forEachIndexed{ idx, value ->
-                    val position = (idx+1).toString()
-                    val address = value.location.address
-                    addressesString += "$position. $address\n"
-                }
-                addresses.text = addressesString
+                cost.text = String.format("$%.2f",costsString)
+                timeFrame.text = timeString
+                addresses.text = UtilsStringRide.locationsToString(ride.orderedWaypoints)
+                numRiders.text = UtilsStringRide.passengersToString(ride.orderedWaypoints)
             }
 
         }
@@ -104,7 +90,7 @@ class RideAdapter(list: List<ViewType>): RecyclerView.Adapter<RideAdapter.RideDa
                 val timeString = header.startTime +" - "+ header.endTime
                 time.text = timeString
                 date.text = header.date
-                val totalString = "$" + header.total.toString()
+                val totalString =  header.total
                 total.text = totalString
             }
         }
