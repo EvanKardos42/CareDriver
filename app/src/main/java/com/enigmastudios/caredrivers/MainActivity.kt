@@ -2,11 +2,13 @@ package com.enigmastudios.caredrivers
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.enigmastudios.caredrivers.R
-import com.enigmastudios.caredrivers.models.RideModelResponse
+import com.enigmastudios.caredrivers.models.RideModel
+import com.enigmastudios.caredrivers.ui.RideDataHolder
 import com.enigmastudios.caredrivers.ui.main.MainFragment
+import com.enigmastudios.caredrivers.ui.main.RideDetailsFragment
+import com.enigmastudios.caredrivers.utils.Callbacks
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Callbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,4 +19,12 @@ class MainActivity : AppCompatActivity() {
                 .commitNow()
         }
     }
+
+    override fun onRideSelected(ride: RideModel?) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, RideDetailsFragment.newInstance())
+            .addToBackStack(null)
+            .commit()
+    }
+
 }

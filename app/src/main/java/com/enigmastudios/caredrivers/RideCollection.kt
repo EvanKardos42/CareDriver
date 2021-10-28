@@ -8,7 +8,7 @@ import kotlin.collections.ArrayList
 import kotlin.collections.LinkedHashMap
 
 class RideCollection(listOfRides : List<RideModel>) {
-    val map = LinkedHashMap<String,ArrayList<RideModel>>()
+    private val map = LinkedHashMap<String,ArrayList<RideModel>>()
 
     init{
         for(ride in listOfRides){
@@ -22,10 +22,10 @@ class RideCollection(listOfRides : List<RideModel>) {
         }
     }
 
-    fun toList():List<ViewType>{
+    fun toListWithHeaders():List<ViewType>{
         val values = ArrayList<ViewType>()
         for(key in map.keys){
-            var sum:Float = 0.0F
+            var sum = 0.0F
             var listOfRides = map[key]!!
             for(ride in map[key]!!){
                 sum += ride.estimatedEarningsCents
