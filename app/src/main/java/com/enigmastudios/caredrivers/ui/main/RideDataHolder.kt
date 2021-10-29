@@ -1,4 +1,4 @@
-package com.enigmastudios.caredrivers.ui
+package com.enigmastudios.caredrivers.ui.main
 
 import android.view.View
 import android.widget.TextView

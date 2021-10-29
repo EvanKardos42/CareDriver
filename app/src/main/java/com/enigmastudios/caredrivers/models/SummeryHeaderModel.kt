@@ -1,6 +1,6 @@
 package com.enigmastudios.caredrivers.models
 
-import com.enigmastudios.caredrivers.ui.RideAdapter
+import com.enigmastudios.caredrivers.ui.main.RideAdapter
 
 data class SummeryHeaderModel(
     val date: String,

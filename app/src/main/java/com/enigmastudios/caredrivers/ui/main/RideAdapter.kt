@@ -1,4 +1,4 @@
-package com.enigmastudios.caredrivers.ui
+package com.enigmastudios.caredrivers.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -26,7 +26,7 @@ class RideAdapter(list: List<ViewType>, private var callbacks: Callbacks?):
 
         if (viewType == R.layout.trip_card_item){
             val tripView = inflater.inflate(R.layout.trip_card_item,parent,false)
-            return RideDataHolder.TripHolder(tripView){ position ->
+            return RideDataHolder.TripHolder(tripView) { position ->
                 callbacks?.onRideSelected(data[position] as RideModel)
             }
         }

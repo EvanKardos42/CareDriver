@@ -1,13 +1,11 @@
-package com.enigmastudios.caredrivers.ui.main
+package com.enigmastudios.caredrivers.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.enigmastudios.caredrivers.RideCollection
-import com.enigmastudios.caredrivers.models.RideModelResponse
 import com.enigmastudios.caredrivers.network.RetrofitBuilder
 import kotlinx.coroutines.Dispatchers
 
-class MainViewModel : ViewModel() {
+class RideViewModel : ViewModel() {
     private val fetcher = RetrofitBuilder.apiService
 
     val response = liveData(Dispatchers.IO) {

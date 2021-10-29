@@ -1,9 +1,8 @@
-package com.enigmastudios.caredrivers
+package com.enigmastudios.caredrivers.utils
 
 import com.enigmastudios.caredrivers.models.RideModel
 import com.enigmastudios.caredrivers.models.SummeryHeaderModel
 import com.enigmastudios.caredrivers.models.ViewType
-import com.enigmastudios.caredrivers.utils.UtilsStringRide
 import kotlin.collections.ArrayList
 import kotlin.collections.LinkedHashMap
 
@@ -26,7 +25,7 @@ class RideCollection(listOfRides : List<RideModel>) {
         val values = ArrayList<ViewType>()
         for(key in map.keys){
             var sum = 0.0F
-            var listOfRides = map[key]!!
+            val listOfRides = map[key]!!
             for(ride in map[key]!!){
                 sum += ride.estimatedEarningsCents
             }

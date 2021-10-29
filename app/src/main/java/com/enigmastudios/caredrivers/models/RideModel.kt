@@ -1,8 +1,9 @@
 package com.enigmastudios.caredrivers.models
 
 
-import com.enigmastudios.caredrivers.ui.RideAdapter
+import com.enigmastudios.caredrivers.ui.main.RideAdapter
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class RideModel(
     override val viewType: Int = RideAdapter.VIEW_TYPE_TRIP,
@@ -22,4 +23,4 @@ data class RideModel(
     val startsAt: String,
     @SerializedName("trip_id")
     val tripId: Int
-):ViewType
+):ViewType,Serializable

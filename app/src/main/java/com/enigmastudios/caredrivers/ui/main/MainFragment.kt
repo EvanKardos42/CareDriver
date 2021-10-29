@@ -10,14 +10,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.enigmastudios.caredrivers.R
-import com.enigmastudios.caredrivers.RideCollection
-import com.enigmastudios.caredrivers.ui.RideAdapter
+import com.enigmastudios.caredrivers.utils.RideCollection
+import com.enigmastudios.caredrivers.ui.RideViewModel
 import com.enigmastudios.caredrivers.utils.Callbacks
 
-class MainFragment : Fragment() {
-    private val TAG ="EVANKARDOS_MAINFRAGMENT"
+private val TAG ="EVANKARDOS_MAINFRAGMENT"
 
-    private lateinit var viewModel: MainViewModel
+class MainFragment : Fragment() {
+
+    private lateinit var viewModel: RideViewModel
     private lateinit var recyclerView: RecyclerView
     private var callbacks: Callbacks? = null
     companion object {
@@ -34,7 +35,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view =  inflater.inflate(R.layout.main_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(RideViewModel::class.java)
         recyclerView  = view.findViewById(R.id.list_of_rides_recycleView)
         return view
     }
@@ -45,8 +46,8 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.response.observe(viewLifecycleOwner){
-            val collect = it.rideCollection.toListWithHeaders()
-            recyclerView.adapter = RideAdapter(collect,callbacks)
+            val collect = RideCollection(it.rideModels)
+            recyclerView.adapter = RideAdapter(collect.toListWithHeaders(),callbacks)
             recyclerView.layoutManager = LinearLayoutManager(context)
         }
     }
