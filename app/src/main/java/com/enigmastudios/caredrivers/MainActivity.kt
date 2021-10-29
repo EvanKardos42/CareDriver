@@ -3,8 +3,8 @@ package com.enigmastudios.caredrivers
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.enigmastudios.caredrivers.models.RideModel
+import com.enigmastudios.caredrivers.ui.RideDetailsFragment
 import com.enigmastudios.caredrivers.ui.main.MainFragment
-import com.enigmastudios.caredrivers.ui.main.RideDetailsFragment
 import com.enigmastudios.caredrivers.utils.Callbacks
 
 class MainActivity : AppCompatActivity(), Callbacks {

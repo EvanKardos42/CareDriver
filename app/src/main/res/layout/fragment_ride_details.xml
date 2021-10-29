@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Thu 6/18"
+        android:text="@string/default_date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +33,7 @@
         android:id="@+id/Est_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Estimated"
+        android:text="@string/estimated"
         app:layout_constraintEnd_toEndOf="@+id/Total_textView"
         app:layout_constraintStart_toStartOf="@+id/Total_textView"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,10 +46,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Est_label" />
 
-    <com.google.android.gms.maps.MapView
+    <fragment
+        class="com.google.android.gms.maps.MapFragment"
         android:id="@+id/mapView"
         android:layout_width="0dp"
-        android:layout_height="175dp"
+        android:layout_height="300dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -71,7 +72,7 @@
     <ListView
         android:id="@+id/address_listView"
         android:layout_width="0dp"
-        android:layout_height="262dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"

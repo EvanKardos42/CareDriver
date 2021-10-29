@@ -6,4 +6,10 @@
     <string name="Is_A_Series">This trip is part of a series.</string>
     <string name="default_text_tripid">Trip ID: 123456 * 18.46 mi * 50 min</string>
     <string name="cancel_text">Cancel This Trip</string>
+    <string name="default_date">Thu 6/18</string>
+    <string name="estimated">Estimated</string>
+    <string name="pickup">PickUp</string>
+    <string name="dropoff">DropOff</string>
+
+
 </resources>

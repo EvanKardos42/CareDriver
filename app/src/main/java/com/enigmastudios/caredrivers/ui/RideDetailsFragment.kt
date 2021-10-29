@@ -13,7 +13,11 @@ import com.enigmastudios.caredrivers.R
 import com.enigmastudios.caredrivers.databinding.FragmentRideDetailsBinding
 import com.enigmastudios.caredrivers.models.RideModel
 import com.enigmastudios.caredrivers.utils.UtilsStringRide
+import com.google.android.gms.maps.SupportMapFragment
 import okhttp3.internal.Util
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+
 
 private const val ARG_RIDE_DATA = "crime_Data"
 class RideDetailsFragment:Fragment(){
@@ -39,6 +43,7 @@ class RideDetailsFragment:Fragment(){
         ride = arguments?.getSerializable(ARG_RIDE_DATA) as RideModel
         bind = FragmentRideDetailsBinding.inflate(inflater,container,false)
         attachModelToTextViews()
+        attachList()
         attachMap()
         return bind.root
     }
@@ -46,17 +51,17 @@ class RideDetailsFragment:Fragment(){
 
 
     private fun attachModelToTextViews(){
-        bind.DateTextView.text = UtilsStringRide.dateToString(ride.startsAt)
-
+        val total = ride.estimatedEarningsCents/100.0
         val startTime = UtilsStringRide.timeToString(ride.startsAt)
         val endTime = UtilsStringRide.timeToString(ride.endsAt)
-        bind.timeWindowTextView.text = "$startTime - $endTime"
-
-        val tripIDString = "${ride.tripId} * " +
+        val timeWindow = "$startTime - $endTime"
+        val tripIDString = "Trip ID: ${ride.tripId} * " +
                 "${ride.estimatedRideMiles} * " +
                 "${ride.estimatedRideMinutes} min"
+
+        bind.DateTextView.text = UtilsStringRide.dateToString(ride.startsAt)
+        bind.timeWindowTextView.text = timeWindow
         bind.tripIDTextView.text = tripIDString
-        val total = ride.estimatedEarningsCents/100.0
         bind.TotalTextView.text = String.format("$%.2f",total)
         if(!ride.inSeries){
             bind.seriesTextView.visibility = View.GONE
@@ -64,11 +69,24 @@ class RideDetailsFragment:Fragment(){
     }
 
    private fun attachMap(){
-        bind.mapView
+       val mapFragment = requireActivity().supportFragmentManager.findFragmentById(R.id.mapView) as? SupportMapFragment
+
+       mapFragment!!.getMapAsync {
+            val places = mutableListOf<LatLng>()
+            for(point in ride.orderedWaypoints) {
+                places.add(LatLng(point.location.lat, point.location.lng))
+            }
+            for(p in places) {
+                it.addMarker(MarkerOptions().position(p))
+            }
+
+        }
     }
 
     private fun attachList(){
-
+        bind.addressListView.adapter = context?.let {
+            AddressAdapter( ride.orderedWaypoints, it)
+        }
     }
 
 }
