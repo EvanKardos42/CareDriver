@@ -10,6 +10,11 @@
     <string name="estimated">Estimated</string>
     <string name="pickup">PickUp</string>
     <string name="dropoff">DropOff</string>
+    <string name="default_money">$600</string>
+    <string name="main_view_title">My Rides</string>
+    <string name="frag_detail_title">Ride Details</string>
+
+
 
 
 </resources>

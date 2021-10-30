@@ -11,6 +11,8 @@ class MainActivity : AppCompatActivity(), Callbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.setTitle(R.string.main_view_title)
+
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
